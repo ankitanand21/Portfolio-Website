@@ -247,6 +247,36 @@
         .form-container button:hover {
             background-color: #d1a90f;
         }
+        .projects-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem;
+        }
+        .project-thumbnail {
+            flex: 1;
+            margin: 10px;
+            text-align: center;
+        }
+        .project-thumbnail img {
+            width: 100%;
+            max-width: 400px; /* Set maximum width */
+            height: auto; /* Maintain aspect ratio */
+            border-radius: 8px;
+        }
+        .project-details {
+            max-width: 50%;
+            padding-left: 2rem;
+            flex: 1;
+        }
+        .project-details a {
+            color: #00FF00;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+        .project-details a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -282,12 +312,12 @@
                         <p>Address: Bengaluru, Karnataka, India </p>
                         <p>Email: ankitanand2106@gmail.com </p>
                         <p>Phone: +91 9835327261</p>
-                        <p>LinkedIn: <a> linkedin.com/in/ankitanand21</a></p>
-                        <p>GitHub: <a> github.com/ankitanand21</a></p>
+                        <p>LinkedIn: linkedin.com/in/ankitanand21</a></p>
+                        <p>GitHub: github.com/ankitanand21</a></p>
                     </div>
                 </div>
                 <div class="about-image">
-                    <img src="https://tinyurl.com/ankit21056" alt="Ankit Anand">
+                    <img src="https://www.decubica.com/wp-content/uploads/2020/08/web3.png" alt="Ankit Anand">
                 </div>
             </div>
         </div>
@@ -321,6 +351,21 @@
                     </div>
                     <div class="skill">
                         <div class="skill-name">Ruby</div>
+                        <div class="skill-bar"><div class="skill-level" style="width: 80%;"></div></div>
+                    </div>
+                    <div class="skill">
+                        <div class="skill-name">PHP</div>
+                        <div class="skill-bar"><div class="skill-level" style="width: 60%;"></div></div>
+                    </div>
+                    <div class="skill">
+                        <div class="skill-name">.NET</div>
+                        <div class="skill-bar"><div class="skill-level" style="width: 70%;"></div></div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <div class="category-title">DATABASES</div>
+                    <div class="skill">
+                        <div class="skill-name">SQL</div>
                         <div class="skill-bar"><div class="skill-level" style="width: 80%;"></div></div>
                     </div>
                     <div class="skill">
@@ -426,8 +471,18 @@
         </div>
 
         <div id="projects" class="section">
-            <h1>Projects</h1>
-            <p>This section contains my projects. </p>
+            <div class="projects-container">
+                <div class="project-thumbnail">
+                    <a href="https://ankit21.netlify.app/" target="_blank">
+                        <img src="https://archives1.dailynews.lk/sites/default/files/news/2021/11/02/weather-forecast.jpg" alt="Weather Forecast Project">
+                    </a>
+                </div>
+                <div class="project-thumbnail">
+                    <a href="https://ankit216.netlify.app/" target="_blank">
+                        <img src="https://shorturl.at/5UFXA" alt="Project Thumbnail">
+                    </a>
+                </div>
+            </div>
         </div>
 
         <div id="enquiry" class="section">
@@ -460,12 +515,11 @@
             <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
         </a>
         <a href="mailto:ankitanand2106@gmail.com" target="_blank">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIc6OB0vD6JC7CgaLHDTrxXKSH-L2DxXxeTA&s" alt="WhatsApp">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIc6OB0vD6JC7CgaLHDTrxXKSH-L2DxXxeTA&s" alt="Email">
         </a>
         <a href="mailto:ankitanand2106@gmail.com" target="_blank">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2sl3yuXd2zWrFIv1kvAqHEMjp12gHs7uT6w&s" alt="WhatsApp">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2sl3yuXd2zWrFIv1kvAqHEMjp12gHs7uT6w&s" alt="Email">
         </a>
-
     </footer>
 
     <script>
