@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Website</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+        .background-video {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            z-index: -1;
+            opacity: 0.2;
+        }
+        .navbar {
+            display: flex;
+            justify-content: flex-end;
+            background-color: #111;
+            padding: 1rem;
+            z-index: 1;
+            position: sticky;
+            top: 0;
+        }
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            padding: 0 1rem;
+        }
+        .navbar a:hover {
+            background-color: #575757;
+        }
+        .container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            z-index: 1;
+        }
+        .section {
+            display: none;
+        }
+        .section.active {
+            display: block;
+        }
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        .home-text {
+            font-size: 2rem;
+            margin-top: 0;
+        }
+        footer {
+            background-color: #111;
+            text-align: center;
+            padding: 1rem;
+            z-index: 1;
+        }
+        footer a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 1rem;
+            display: inline-block;
+            font-size: 1.2rem;
+        }
+        footer a img {
+            width: 24px;
+            height: 24px;
+            vertical-align: middle;
+        }
+        .about-container {
+            display: flex;
+            align-items: center;
+            padding: 2rem;
+            background-color: #111;
+            justify-content: space-between;
+        }
+        .about-text {
+            max-width: 50%;
+            text-align: left;
+            padding: 1rem;
+        }
+        .about-box {
+            background-color: #222;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+        .about-box h2 {
+            color: #f1c40f;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        .about-box p {
+            line-height: 1.5;
+            margin-bottom: 1rem;
+            color: #fff;
+            text-align: justify;
+        }
+        .about-image {
+            max-width: 40%;
+            text-align: center;
+        }
+        .about-image img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .skill-category {
+            flex: 1 1 45%;
+            margin: 10px;
+            background-color: #111;
+            padding: 1rem;
+            border-radius: 8px;
+        }
+        .category-title {
+            color: #ffd700;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .skill {
+            margin-bottom: 20px;
+        }
+        .skill-name {
+            margin-bottom: 5px;
+        }
+        .skill-bar {
+            height: 10px;
+            background-color: #333333;
+            position: relative;
+        }
+        .skill-level {
+            height: 100%;
+            background-color: #00FF00;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .contact-container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: left;
+            background-color: #111;
+            padding: 2rem;
+            border-radius: 8px;
+        }
+        .contact-container h2 {
+            color: #f1c40f;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        .contact-container p {
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+        .contact-container a {
+            color: #00FF00;
+            text-decoration: none;
+        }
+        .contact-container a:hover {
+            text-decoration: underline;
+        }
+        .bio-container {
+            display: flex;
+            justify-content: space-around;
+            padding: 2rem;
+            background-color: #111;
+            text-align: left;
+        }
+        .bio-column {
+            flex: 1;
+            margin: 0 1rem;
+        }
+        .bio-box {
+            background-color: #222;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+        .bio-box h2 {
+            color: #f1c40f;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        .bio-box p {
+            line-height: 1.5;
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: left;
+            background-color: #111;
+            padding: 2rem;
+            border-radius: 8px;
+        }
+        .form-container h2 {
+            color: #f1c40f;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        .form-container label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+        .form-container input, .form-container textarea {
+            width: 100%;
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            border: none;
+            border-radius: 4px;
+        }
+        .form-container button {
+            background-color: #f1c40f;
+            color: #000;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .form-container button:hover {
+            background-color: #d1a90f;
+        }
+    </style>
+</head>
+<body>
+    <video class="background-video" autoplay loop muted>
+        <source src="https://media.istockphoto.com/id/1046965704/video/programming-source-code-abstract-background.mp4?s=mp4-640x640-is&k=20&c=E7PGx6e2DxpcNqp2SaN6Q9JaJ4A5OdBTp7ldtgLX_RE=" type="video/mp4">
+    </video>
+
+    <nav class="navbar">
+        <a href="#" data-target="home">HOME</a>
+        <a href="#" data-target="about">ABOUT ME</a>
+        <a href="#" data-target="skills">SKILLS</a>
+        <a href="#" data-target="bio">BIO</a>
+        <a href="#" data-target="projects">PROJECTS</a>
+        <a href="#" data-target="enquiry">CONTACT</a>
+    </nav>
+
+    <div class="container">
+        <div id="home" class="section active">
+            <h1>Welcome to My Portfolio</h1>
+            <p class="home-text">Hello, I'm Ankit Anand<br>Software Engineer<br>and Machine Learning Enthusiast</p>
+        </div>
+
+        <div id="about" class="section">
+            <div class="about-container">
+                <div class="about-text">
+                    <div class="about-box">
+                        <h2>Software Engineer</h2>
+                        <p>I am a passionate Software Engineer with a deep fascination for the world of Artificial Intelligence and Machine Learning. With a strong technical background and a creative mindset, I thrive on building innovative solutions that push the boundaries of what's possible. In my free time, you'll find me exploring the latest advancements in AI, tinkering with cutting-edge technologies, and sharing my knowledge with the broader tech community.</p>
+                    </div>
+                    <div class="about-box">
+                        <h2>Personal Information</h2>
+                        <p>Name: Ankit Anand</p>
+                        <p>Address: Bengaluru, Karnataka, India </p>
+                        <p>Email: ankitanand2106@gmail.com </p>
+                        <p>Phone: +91 9835327261</p>
+                        <p>LinkedIn: <a> linkedin.com/in/ankitanand21</a></p>
+                        <p>GitHub: <a> github.com/ankitanand21</a></p>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="https://tinyurl.com/ankit21056" alt="Ankit Anand">
+                </div>
+            </div>
+        </div>
+
+        <div id="skills" class="section">
+            <div class="skills-container">
+                <div class="skill-category">
+                    <div class="category-title">PROGRAMMING</div>
+                    <div class="skill">
+                        <div class="skill-name">C</div>
+                        <div class="skill-bar"><div class="skill-level" style="width: 90%;"></div></div>
+                    </div>
+                    <div class="skill">
+                        <div class="skill-name">C++</div>
+                        <div class="skill-bar"><div class="skill-level" style="width: 90%;"></div></div>
+                    </div>
+                    <div class="skill">
+                        <div class="skill-name">PYTHON</div>
+                        <div class="skill-bar"><div class="skill-level" style="width: 80%;"></div></div>
+                    </div>
+                    <div class="skill">
+                        <div class="skill-name">C#</div>
+                        <div class="skill-bar"><div class="skill-level" style="width: 80%;"></div></div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <div class="category-title">BACK END</div>
+                    <div class="skill">
+                        <div class="skill-name">NODE JS</div>
+                        <div class="skill-bar"><div class="skill-level" style="width: 70%;"></div></div>
+                    </div>
+                    <div class="skill">
+                        <div class="skill-name">Ruby</div>
+                        <div class="skill-bar"><div class="skill-level" style="width: 80%;"></div></div>
+                    </div>
+                    <div class="skill">
+                        <div class="skill-name">PHP</div>
+                        <div class="skill-bar"><div class="skill-level" style="width: 60%;"></div></div>
+                    </div>
+                    <div class="skill">
+                        <div class="skill-name">.NET</div>
+                        <div class="skill-bar"><div class="skill-level" style="width: 70%;"></div></div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <div class="category-title">DATABASES</div>
+                    <div class="skill">
+                        <div class="skill-name">SQL</div>
+                        <div class="skill-bar"><div class="skill-level" style="width: 90%;"></div></div>
+                    </div>
+                    <div class="skill">
+                        <div class="skill-name">MONGO DB</div>
+                        <div class="skill-bar"><div class="skill-level" style="width: 70%;"></div></div>
+                    </div>
+                    <div class="skill">
+                        <div class="skill-name">MySQL</div>
+                        <div class="skill-bar"><div class="skill-level" style="width: 80%;"></div></div>
+                    </div>
+                    <div class="skill">
+                        <div class="skill-name">SQLite</div>
+                        <div class="skill-bar"><div class="skill-level" style="width: 60%;"></div></div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <div class="category-title">FRONT END</div>
+                    <div class="skill">
+                        <div class="skill-name">HTML</div>
+                        <div class="skill-bar"><div class="skill-level" style="width: 90%;"></div></div>
+                    </div>
+                    <div class="skill">
+                        <div class="skill-name">CSS</div>
+                        <div class="skill-bar"><div class="skill-level" style="width: 80%;"></div></div>
+                    </div>
+                    <div class="skill">
+                        <div class="skill-name">JAVASCRIPT</div>
+                        <div class="skill-bar"><div class="skill-level" style="width: 80%;"></div></div>
+                    </div>
+                    <div class="skill">
+                        <div class="skill-name">React.JS</div>
+                        <div class="skill-bar"><div class="skill-level" style="width: 70%;"></div></div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <div class="category-title">TOOLS</div>
+                    <div class="skill">
+                        <div class="skill-name">GIT/GITHUB</div>
+                        <div class="skill-bar"><div class="skill-level" style="width: 90%;"></div></div>
+                    </div>
+                    <div class="skill">
+                        <div class="skill-name">VS CODE</div>
+                        <div class="skill-bar"><div class="skill-level" style="width: 90%;"></div></div>
+                    </div>
+                    <div class="skill">
+                        <div class="skill-name">LATEX</div>
+                        <div class="skill-bar"><div class="skill-level" style="width: 80%;"></div></div>
+                    </div>
+                    <div class="skill">
+                        <div class="skill-name">JUPYTER NOTEBOOK</div>
+                        <div class="skill-bar"><div class="skill-level" style="width: 90%;"></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="bio" class="section">
+            <div class="bio-container">
+                <div class="bio-column">
+                    <div class="bio-box">
+                        <h2>Education</h2>
+                        <p><strong>College:</strong> Nitte Meenakshi Institute of Technology</p>
+                        <p><strong>Degree:</strong> Bachelor of Engineering</p>
+                        <p><strong>Branch:</strong> Information Science and Engineering</p>
+                        <p><strong>Year:</strong> 2020-2024</p>
+                    </div>
+                    <div class="bio-box">
+                        <p><strong>School:</strong> VJ International School</p>
+                        <p><strong>Class:</strong> 12th</p>
+                        <p><strong>Percentage:</strong> 77.8%</p>
+                    </div>
+                    <div class="bio-box">
+                        <p><strong>School:</strong> VJ International School</p>
+                        <p><strong>Class:</strong> 10th</p>
+                        <p><strong>CGPA:</strong> 10.0</p>
+                    </div>
+                </div>
+                
+                <div class="bio-column">
+                    <div class="bio-box">
+                        <h2>Experience</h2>
+                        <p><strong>Web Developer Intern at Bharat Intern</strong></p>
+                        <p><strong>Duration:</strong> Oct 2023 - Nov 2023</p>
+                        <p style="text-align: justify;">As a Web Developer Intern, I designed and implemented a responsive e-commerce website using HTML, CSS, and JavaScript. The project involved integrating a shopping cart functionality and optimizing the site for mobile devices. This experience enhanced my skills in front-end development and taught me valuable lessons in user experience design.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="projects" class="section">
+            <h1>Projects</h1>
+            <p>This section contains my projects. </p>
+        </div>
+
+        <div id="enquiry" class="section">
+            <div class="form-container">
+                <h2>Enquiry</h2>
+                <form id="enquiry-form">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="4" required></textarea>
+
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <a href="https://github.com/ankitanand21" target="_blank">
+            <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub">
+        </a>
+        <a href="https://www.linkedin.com/in/ankitanand21/" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn">
+        </a>
+        <a href="https://wa.me/9835327261" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+        </a>
+        <a href="mailto:ankitanand2106@gmail.com" target="_blank">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIc6OB0vD6JC7CgaLHDTrxXKSH-L2DxXxeTA&s" alt="WhatsApp">
+        </a>
+        <a href="mailto:ankitanand2106@gmail.com" target="_blank">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2sl3yuXd2zWrFIv1kvAqHEMjp12gHs7uT6w&s" alt="WhatsApp">
+        </a>
+
+    </footer>
+
+    <script>
+        const navLinks = document.querySelectorAll('.navbar a');
+        const sections = document.querySelectorAll('.section');
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = link.getAttribute('data-target');
+                
+                sections.forEach(section => {
+                    section.classList.remove('active');
+                    if (section.id === target) {
+                        section.classList.add('active');
+                    }
+                });
+
+                // Scroll to the section
+                document.getElementById(target).scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        const form = document.getElementById('enquiry-form');
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Form submitted successfully!');
+            form.reset();
+        });
+    </script>
+</body>
+</html>
